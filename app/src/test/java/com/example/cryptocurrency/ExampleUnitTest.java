@@ -5,6 +5,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import com.example.cryptocurrency.modelclass.CryptoCurrency;
+import com.example.cryptocurrency.network.CryptoCurrencyApi;
+import com.example.cryptocurrency.network.CryptoCurrencyApiService;
 import com.google.gson.Gson;
 
 import java.io.IOException;
