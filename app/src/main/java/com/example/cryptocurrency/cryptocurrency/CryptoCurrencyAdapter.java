@@ -15,9 +15,15 @@ public class CryptoCurrencyAdapter extends RecyclerView.Adapter<CryptoCurrencyVi
 
     private List<CryptoCurrency> cryptoCurrency;
 
+    private OnItemActionListener onItemActionListener;
+
     void setUpCryptoCurrency(List<CryptoCurrency> cryptoCurrency) {
         this.cryptoCurrency = cryptoCurrency;
         notifyDataSetChanged();
+    }
+
+    void setOnItemActionListener(OnItemActionListener onItemActionListener) {
+        this.onItemActionListener = onItemActionListener;
     }
     @NonNull
     @Override
@@ -31,7 +37,9 @@ public class CryptoCurrencyAdapter extends RecyclerView.Adapter<CryptoCurrencyVi
     public void onBindViewHolder(@NonNull CryptoCurrencyViewHolder holder, int position) {
         CryptoCurrency cryptoCurrencyList = cryptoCurrency.get(position);
         holder.binding.setCryptoCurrency(cryptoCurrencyList);
-
+        holder.binding.getRoot().setOnClickListener(v -> {
+            onItemActionListener.onClick(cryptoCurrencyList.getId());
+        });
     }
 
     @Override

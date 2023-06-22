@@ -15,7 +15,7 @@ public class CryptoCurrencyApi {
                 .addInterceptor(loggingInterceptor)
                 .build();
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.coinpaprika.com/")
+                .baseUrl("https://api.coinpaprika.com/v1/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();

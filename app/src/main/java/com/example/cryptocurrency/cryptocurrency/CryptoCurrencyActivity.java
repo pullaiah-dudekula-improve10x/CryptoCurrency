@@ -1,11 +1,13 @@
 package com.example.cryptocurrency.cryptocurrency;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.cryptocurrency.CryptoCoinDetailsActivity;
 import com.example.cryptocurrency.databinding.ActivityCryptoCurrencyBinding;
 import com.example.cryptocurrency.modelclass.CryptoCurrency;
 import com.example.cryptocurrency.network.CryptoCurrencyApi;
@@ -37,6 +39,7 @@ public class CryptoCurrencyActivity extends AppCompatActivity {
         fetchCryptoCurrencyItems();
         setUpAdapter();
         setUpRv();
+
     }
 
     private void fetchCryptoCurrencyItems() {
@@ -66,10 +69,21 @@ public class CryptoCurrencyActivity extends AppCompatActivity {
     private void setUpAdapter() {
         cryptoCurrencyAdapter = new CryptoCurrencyAdapter();
         cryptoCurrencyAdapter.setUpCryptoCurrency(cryptoCurrency);
+        cryptoCurrencyAdapter.setOnItemActionListener(new OnItemActionListener() {
+            @Override
+            public void onClick(String id) {
+                handleNextScreen(id);
+            }
+        });
     }
 
     private void setUpApi() {
         CryptoCurrencyApi cryptoCurrencyApi = new CryptoCurrencyApi();
         cryptoCurrencyApiService = cryptoCurrencyApi.createCryptoCurrencyApiService();
+    }
+    private void handleNextScreen(String id) {
+        Intent intent = new Intent(this, CryptoCoinDetailsActivity.class);
+        intent.putExtra("id", id);
+        startActivity(intent);
     }
 }

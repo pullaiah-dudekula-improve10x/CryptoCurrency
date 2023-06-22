@@ -6,8 +6,6 @@ import static org.junit.Assert.*;
 
 import com.example.cryptocurrency.modelclass.CoinDetails;
 import com.example.cryptocurrency.modelclass.CryptoCurrency;
-import com.example.cryptocurrency.network.CoinDetailsApiService;
-import com.example.cryptocurrency.network.CryptoCoinApi;
 import com.example.cryptocurrency.network.CryptoCurrencyApi;
 import com.example.cryptocurrency.network.CryptoCurrencyApiService;
 import com.google.gson.Gson;
@@ -39,10 +37,9 @@ public class ExampleUnitTest {
     }
 
     @Test
-
     public void getCoinDetails() throws IOException {
-        CoinDetailsApiService apiService = new CryptoCoinApi().createCoinDetails();
-        Call<CoinDetails> call = apiService.fetchCoinDetails();
+        CryptoCurrencyApiService apiService = new CryptoCurrencyApi().createCryptoCurrencyApiService();
+        Call<CoinDetails> call = apiService.fetchCoinDetails("btc-bitcoin");
         CoinDetails coinDetails = call.execute().body();
         assertNotNull(coinDetails);
         System.out.println(new Gson().toJson(coinDetails));
