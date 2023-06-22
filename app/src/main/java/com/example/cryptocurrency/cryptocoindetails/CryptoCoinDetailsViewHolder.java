@@ -1,4 +1,4 @@
-package com.example.cryptocurrency;
+package com.example.cryptocurrency.cryptocoindetails;
 
 import androidx.recyclerview.widget.RecyclerView;
 

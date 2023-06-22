@@ -7,7 +7,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.cryptocurrency.CryptoCoinDetailsActivity;
+import com.example.cryptocurrency.cryptocoindetails.CryptoCoinDetailsActivity;
 import com.example.cryptocurrency.databinding.ActivityCryptoCurrencyBinding;
 import com.example.cryptocurrency.modelclass.CryptoCurrency;
 import com.example.cryptocurrency.network.CryptoCurrencyApi;

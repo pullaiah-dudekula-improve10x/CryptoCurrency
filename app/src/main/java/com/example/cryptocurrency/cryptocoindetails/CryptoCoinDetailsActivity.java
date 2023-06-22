@@ -1,14 +1,17 @@
-package com.example.cryptocurrency;
+package com.example.cryptocurrency.cryptocoindetails;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.example.cryptocurrency.CryptoTeamMembersAdapter;
 import com.example.cryptocurrency.databinding.ActivityCryptoCoinDetailsBinding;
 import com.example.cryptocurrency.modelclass.CoinDetails;
 import com.example.cryptocurrency.modelclass.Tags;
+import com.example.cryptocurrency.modelclass.Team;
 import com.example.cryptocurrency.network.CryptoCurrencyApi;
 import com.example.cryptocurrency.network.CryptoCurrencyApiService;
 
@@ -28,7 +31,11 @@ public class CryptoCoinDetailsActivity extends AppCompatActivity {
 
     private List<Tags> tags = new ArrayList<>();
 
+    private List<Team> team = new ArrayList<>();
+
     private CryptoCoinDetailsAdapter cryptoCoinDetailsAdapter;
+
+    private CryptoTeamMembersAdapter teamMembersAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +47,20 @@ public class CryptoCoinDetailsActivity extends AppCompatActivity {
         }
         fetchCryptoCoinDetails();
         setUpAdapter();
+        setUpTeamAdapter();
         setUpRv();
+        setUpTeamRv();
+    }
+
+    private void setUpTeamRv() {
+        binding.teamsRv.setLayoutManager(new LinearLayoutManager(this));
+        binding.teamsRv.setAdapter(teamMembersAdapter);
+    }
+
+    private void setUpTeamAdapter() {
+        teamMembersAdapter = new CryptoTeamMembersAdapter();
+        teamMembersAdapter.setUpTeamDetails(team);
+
     }
 
     private void setUpRv() {
@@ -61,6 +81,7 @@ public class CryptoCoinDetailsActivity extends AppCompatActivity {
                 Toast.makeText(CryptoCoinDetailsActivity.this, "Fetched Items Successfully", Toast.LENGTH_SHORT).show();
                 coinDetails = response.body();
                 cryptoCoinDetailsAdapter.setCoinDetails(coinDetails.getTags());
+                teamMembersAdapter.setUpTeamDetails(coinDetails.getTeam());
                 binding.setCoinDetails(coinDetails);
             }
 

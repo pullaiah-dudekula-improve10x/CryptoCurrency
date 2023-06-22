@@ -1,4 +1,4 @@
-package com.example.cryptocurrency;
+package com.example.cryptocurrency.cryptocoindetails;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -7,7 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cryptocurrency.databinding.TagsItemBinding;
-import com.example.cryptocurrency.modelclass.CoinDetails;
 import com.example.cryptocurrency.modelclass.Tags;
 
 import java.util.List;
